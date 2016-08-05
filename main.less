@@ -28,7 +28,32 @@
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
-	border: #a0a0a0;
+	border: solid 2px #a0a0a0;
 	border-radius: 5px;
 	width: 100%;
+}
+.header-bar{
+	margin: 0 auto;
+	/*Things that nicely scale to window size and divvy contetns appropriately is apparently fucking hard*/
+    width: `Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200) > 900 ? (Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)<1200 ? 900 : 1200) : Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)`;
+    font-size: 0;
+}
+.title{
+	font-size: 18px;
+	width: 250px;
+	display: inline-block;
+	margin: 15px 25px;
+}
+.header-wrapper{
+	display: inline-block;
+}
+.attribute-selector{
+	text-align: left;
+	display: inline-block;
+    font-size: 18px;
+    list-style-type: none;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    margin: 15px 25px;
 }
