@@ -10,6 +10,7 @@ var searchBarView = Backbone.View.extend({
 		$(".search-bar").keyup( function(){
 			$(this).change();
 		});
+		$(".search-bar").val(Math.floor(Math.random()*100));
 	}
 });
 

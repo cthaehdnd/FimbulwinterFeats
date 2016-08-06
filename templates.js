@@ -7,7 +7,7 @@ var searchCardTemplate = _.template(`
 
 var headerTemplate = _.template(`
 	<div class="header-bar">
-		<div class="title">Fimbulwinter Feats:</div>
+		<a class="title" href=#main>Fimbulwinter Feats</a>
 		<div class="header-wrapper">
 			<a class="attribute-selector" href=#Fortitude>Fortitude</a>
 			<a class="attribute-selector" href=#Agility>Agility</a>
