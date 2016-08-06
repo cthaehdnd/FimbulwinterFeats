@@ -2,6 +2,13 @@ var searchBarView = Backbone.View.extend({
 	initialize: function(){
 		this.render();
 	},
+	readHash: function(){
+		var hash = window.location.hash.substring(1);
+		if (hash==""){
+			hash="All";
+		}
+		$(".search-bar").html(searchBarTemplate({feattype:hash}));
+	},
 	render: function(){
 		this.$el.html(searchBarTemplate({feattype:"All"}));
 		$(window).resize( function(){
@@ -13,10 +20,13 @@ var searchBarView = Backbone.View.extend({
 			}
 			$(".search-bar").css("width", width);
 		});
+		window.onhashchange = this.readHash;
 		$(".search-bar").change( function(){
 		});
 	}
 });
+
+
 
 var headerView = Backbone.View.extend({
 	initialize: function(){
