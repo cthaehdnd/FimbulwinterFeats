@@ -17,26 +17,33 @@
 }
 .search-bar{
 	display: block;
-	width: 80%;
+	width: 100%;
 	align-self: center;
 }
 .search-dummy{
 	align-self: center;
 }
-.search-card{
-	background-color: #e3e3e3;
+@autoscale-width: {
+	width: `Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200) > 900 ? (Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)<1200 ? 900 : 1200) : Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)`;
+};
+.search-bar{
+	margin: auto;
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
-	border: solid 2px #a0a0a0;
-	border-radius: 5px;
-	width: 100%;
+	@autoscale-width();
+}
+.feat-title{
+	font-size: 24px;
+	font-weight: 500;
+	margin-bottom: 5px;
 }
 .header-bar{
 	margin: 0 auto;
-	/*Things that nicely scale to window size and divvy contetns appropriately is apparently fucking hard*/
-    width: `Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200) > 900 ? (Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)<1200 ? 900 : 1200) : Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)`;
+	@autoscale-width();
     font-size: 0;
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 15px;
 }
 .title{
 	font-size: 18px;

@@ -8,18 +8,16 @@
 <link rel="icon" href="favicon.ico?v=2" />
 <br>
 
-<div id="headerBar"></div>
-<div id="searchCard"></div>
-<div id="searchResults">
+<div class="header-bar"></div>
+<div class="search-bar"></div>
+<div id="searchResults"></div>
 
 <script type="text/javascript">
 	//var bold=template({value: 'This is bold?'});
 	//$(document.body).append(bold);
-	//added comment to test
-	//added comment the sequel
 	$(document).ready( function(){
-		var header = new headerView({el: $("#headerBar")});
-		var searchCard = new searchBarView({el: $("#searchCard")});
+		var header = new headerView({el: $(".header-bar")});
+		var searchbar = new searchBarView({el: $(".search-bar")});
 	});
 </script>
 <div>

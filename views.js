@@ -3,14 +3,18 @@ var searchBarView = Backbone.View.extend({
 		this.render();
 	},
 	render: function(){
-		this.$el.html(searchCardTemplate());
-		$(".search-bar").change( function(){
-			$(this).siblings(".search-dummy").html($(this).val())
-		})
-		$(".search-bar").keyup( function(){
-			$(this).change();
+		this.$el.html(searchBarTemplate({feattype:"All"}));
+		$(window).resize( function(){
+			var width=Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200);
+			if (width > 900){
+				if (width < 1200){
+					width=900;
+				}
+			}
+			$(".search-bar").css("width", width);
 		});
-		$(".search-bar").val(Math.floor(Math.random()*100));
+		$(".search-bar").change( function(){
+		});
 	}
 });
 
