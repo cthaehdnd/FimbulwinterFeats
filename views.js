@@ -9,8 +9,13 @@ var searchBarView = Backbone.View.extend({
 		}
 		$(".search-bar").html(searchBarTemplate({feattype:hash}));
 	},
+	attachFeats: function(){
+		this.$el.html(featBinTemplate({feats:this.feats}));
+	},
 	render: function(){
 		this.$el.html(searchBarTemplate({feattype:"All"}));
+
+		//scale window dynamically
 		$(window).resize( function(){
 			var width=Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200);
 			if (width > 900){
@@ -20,13 +25,37 @@ var searchBarView = Backbone.View.extend({
 			}
 			$(".search-bar").css("width", width);
 		});
+
+		//update checks on hash
 		window.onhashchange = this.readHash;
-		$(".search-bar").change( function(){
+
+		//attach feat data
+		$.getJSON("feats.json", function(json) {
+		    this.feats=json;
+		    var levelMap={};
+		    _.each(json, function(feat){
+		    	if (!levelMap[feat.rank]){
+		    		levelMap[feat.rank]=[];
+		    	}
+		    	levelMap[feat.rank].push(feat);
+		    });
+		    _.each(Object.keys(levelMap), function(key){
+		    	$(".feat-bin").append(levelTemplate({rank:key}));
+		    	_.each(levelMap[key], function(ele){
+		    		$("[value="+key+"]").append(featTemplate(ele));
+		    	});
+		    });
 		});
+
+		//enable search bar functionality
+		$(".search-bar").change( function(){
+			
+		});
+		$(".search-bar").keyup( function(){
+			$(this).change();
+		})
 	}
 });
-
-
 
 var headerView = Backbone.View.extend({
 	initialize: function(){
@@ -45,4 +74,4 @@ var headerView = Backbone.View.extend({
 			$(".header-bar").css("width", width);
 		});
 	}
-})
+});
