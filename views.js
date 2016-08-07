@@ -46,14 +46,21 @@ var searchBarView = Backbone.View.extend({
 		    	});
 		    });
 		});
-
 		//enable search bar functionality
-		$(".search-bar").change( function(){
-			
-		});
-		$(".search-bar").keyup( function(){
+		console.log("init change binds");
+		$(".search-bar").on('change', function(event){
+			event.stopPropagation();
+			var val = $(this).val().replace(/\s/g,'').toLowerCase();
+			$(".feat").addClass("hidden");
+			$(".feat").filter( function(){
+				var name = $(this).children(".feat-header").text().replace(/\s/g,'').toLowerCase();
+				return name.match(".*"+val+".*");
+			}).removeClass("hidden");
+			console.log("fired");
+		}).on('keyup', function(event){
+			event.stopPropagation();
 			$(this).change();
-		})
+		});
 	}
 });
 

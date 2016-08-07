@@ -12,11 +12,6 @@
 .red{
 	background-color: red;
 }
-.search-bar{
-	display: block;
-	width: 100%;
-	align-self: center;
-}
 .search-dummy{
 	align-self: center;
 }
@@ -24,12 +19,16 @@
 	width: `Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200) > 900 ? (Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)<1200 ? 900 : 1200) : Math.max(Math.min(1200,Math.floor((window.innerWidth*.9)/150)*150),200)`;
 };
 .search-bar{
+	display: block;
 	margin: auto;
 	margin-bottom: 15px;
 	display: flex;
 	flex-direction: column;
 	padding: 10px;
 	@autoscale-width();
+}
+.hidden{
+	display: none;
 }
 .feat{
 	padding: 10px;
@@ -42,7 +41,7 @@
 }
 .level-header{
 	font-size: 20px;
-	font-weight: 400px;
+	font-weight: 500;
 	padding: 10px;
 }
 .header-bar{

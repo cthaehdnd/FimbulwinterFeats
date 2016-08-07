@@ -24,6 +24,8 @@ var levelTemplate = _.template(`
 
 var featTemplate = _.template(`
 	<div class="feat">
-		<%= name%>
+		<div class="feat-header">
+			<%= name%>
+		</div>
 	</div>
 `);
