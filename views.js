@@ -37,12 +37,46 @@ var searchBarView = Backbone.View.extend({
 
 			//enable card hide/show
 			$(".feat").click(function(event){
-				event.stopPropagation();
+				//event.stopPropagation();
 				$(".feat").children(".feat-body").slideUp();
 				if ($(this).children(".feat-body").css("display")=="none"){
 					$(this).children(".feat-body").slideDown();
 				}
 			});
+			
+			//enable search bar functionality
+			$(".search-bar-input").on('change', function(event){
+				//event.stopPropagation();
+				$(".feat-header").next().slideUp();
+				var val = $(this).val().toLowerCase();
+				$(".feat").addClass("filter-hidden");
+				$(".feat").filter( function(){
+					if (val==""){
+						return true;
+					}
+					//drives search function
+					var searchElements=val.split(" ");
+					flag=true;
+					nbegin=-1;
+					var name = $(this).children(".feat-header").text().replace(/\s/g,'').toLowerCase();
+					_.each(searchElements, function(ele){
+						if(ele){
+							var place = name.indexOf(ele);
+							if (place>nbegin){
+								nbegin=place+ele.length-1;
+							}
+							else{
+								flag=false;
+							}
+						}
+					});
+					return flag;
+				}).removeClass("filter-hidden");
+			}).on('keyup', function(event){
+				//event.stopPropagation();
+				$(this).change();
+			});
+
 		});
 	},
 	render: function(){
@@ -64,39 +98,6 @@ var searchBarView = Backbone.View.extend({
 
 		//attach feat data
 		this.attachFeats();
-
-		//enable search bar functionality
-		$(".search-bar-input").on('change', function(event){
-			event.stopPropagation();
-			$(".feat-header").next().slideUp();
-			var val = $(this).val().toLowerCase();
-			$(".feat").addClass("filter-hidden");
-			$(".feat").filter( function(){
-				if (val==""){
-					return true;
-				}
-				//drives search function
-				var searchElements=val.split(" ");
-				flag=true;
-				nbegin=-1;
-				var name = $(this).children(".feat-header").text().replace(/\s/g,'').toLowerCase();
-				_.each(searchElements, function(ele){
-					if(ele){
-						var place = name.indexOf(ele);
-						if (place>nbegin){
-							nbegin=place+ele.length-1;
-						}
-						else{
-							flag=false;
-						}
-					}
-				});
-				return flag;
-			}).removeClass("filter-hidden");
-		}).on('keyup', function(event){
-			event.stopPropagation();
-			$(this).change();
-		});
 	}
 });
 
