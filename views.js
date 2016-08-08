@@ -2,15 +2,48 @@ var searchBarView = Backbone.View.extend({
 	initialize: function(){
 		this.render();
 	},
-	readHash: function(){
+	attachFeats: function(){
 		var hash = window.location.hash.substring(1);
 		if (hash==""){
 			hash="All";
 		}
 		$(".search-bar").html(searchBarTemplate({feattype:hash}));
-	},
-	attachFeats: function(){
-		this.$el.html(featBinTemplate({feats:this.feats}));
+
+		$.getJSON("feats.json", function(json) {
+		    var levelMap={};
+		    _.each(json, function(feat){
+		    	if (!levelMap[feat.rank]){
+		    		levelMap[feat.rank]=[];
+		    	}
+		    	levelMap[feat.rank].push(feat);
+		    });
+		    _.each(Object.keys(levelMap), function(key){
+		    	$(".feat-bin").append(levelTemplate({rank:key}));
+		    	_.each(levelMap[key], function(ele){
+		    		$("[value="+key+"]").append(featTemplate(ele));
+		    	});
+		    });
+		 	//hide feats accordingly
+			if (hash!="All"){
+				$(".feat").addClass("type-hidden");
+				$(".feat").filter( function(){
+					var attribute = $(this).data("attribute");
+					return attribute == hash;
+				}).removeClass("type-hidden");
+			}
+			else{
+				$(".feat").removeClass("type-hidden");
+			}
+
+			//enable card hide/show
+			$(".feat").click(function(event){
+				event.stopPropagation();
+				$(".feat").children(".feat-body").slideUp();
+				if ($(this).children(".feat-body").css("display")=="none"){
+					$(this).children(".feat-body").slideDown();
+				}
+			});
+		});
 	},
 	render: function(){
 		this.$el.html(searchBarTemplate({feattype:"All"}));
@@ -27,36 +60,39 @@ var searchBarView = Backbone.View.extend({
 		});
 
 		//update checks on hash
-		window.onhashchange = this.readHash;
+		window.onhashchange = this.attachFeats;
 
 		//attach feat data
-		$.getJSON("feats.json", function(json) {
-		    this.feats=json;
-		    var levelMap={};
-		    _.each(json, function(feat){
-		    	if (!levelMap[feat.rank]){
-		    		levelMap[feat.rank]=[];
-		    	}
-		    	levelMap[feat.rank].push(feat);
-		    });
-		    _.each(Object.keys(levelMap), function(key){
-		    	$(".feat-bin").append(levelTemplate({rank:key}));
-		    	_.each(levelMap[key], function(ele){
-		    		$("[value="+key+"]").append(featTemplate(ele));
-		    	});
-		    });
-		});
+		this.attachFeats();
+
 		//enable search bar functionality
-		console.log("init change binds");
-		$(".search-bar").on('change', function(event){
+		$(".search-bar-input").on('change', function(event){
 			event.stopPropagation();
-			var val = $(this).val().replace(/\s/g,'').toLowerCase();
-			$(".feat").addClass("hidden");
+			$(".feat-header").next().slideUp();
+			var val = $(this).val().toLowerCase();
+			$(".feat").addClass("filter-hidden");
 			$(".feat").filter( function(){
+				if (val==""){
+					return true;
+				}
+				//drives search function
+				var searchElements=val.split(" ");
+				flag=true;
+				nbegin=-1;
 				var name = $(this).children(".feat-header").text().replace(/\s/g,'').toLowerCase();
-				return name.match(".*"+val+".*");
-			}).removeClass("hidden");
-			console.log("fired");
+				_.each(searchElements, function(ele){
+					if(ele){
+						var place = name.indexOf(ele);
+						if (place>nbegin){
+							nbegin=place+ele.length-1;
+						}
+						else{
+							flag=false;
+						}
+					}
+				});
+				return flag;
+			}).removeClass("filter-hidden");
 		}).on('keyup', function(event){
 			event.stopPropagation();
 			$(this).change();

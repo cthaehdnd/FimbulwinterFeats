@@ -1,6 +1,6 @@
 var searchBarTemplate = _.template(`
 	<div class="feat-title"><%= feattype%> Feats: </div>
-	<input type="text" placeholder="Filter feats by name" class="search-bar">
+	<input type="text" placeholder="Filter feats by name" class="search-bar-input">
 	<div class="feat-bin"></div>
 `);
 
@@ -18,14 +18,36 @@ var headerTemplate = _.template(`
 
 var levelTemplate = _.template(`
 	<div class="level-header" value="<%= rank%>">Level <%= rank%>:</div>
-	<div class="level-bin">
 	</div>
 `);
 
 var featTemplate = _.template(`
-	<div class="feat">
+	<div class="feat" data-attribute="<%= attribute%>">
 		<div class="feat-header">
 			<%= name%>
+		</div>
+		<div class="feat-body" style="display:none;">
+			<div class="feat-info-header">
+				<div class="feat-info-element" id="feat-attribute">
+					Required Attribute: <%= attribute%> <%= rank%>
+				</div>
+				<div class="feat-info-element" id="feat-prof">
+					<% if (proficiency) { %>
+					    Requires Proficiency: <%= proficiency%>
+					<% } %>
+				</div>
+				<div class="feat-info-element" id="feat-precursors">
+					<% if (precursors.length>0) { %>
+					    Required Feats:
+					    <% _.each(precursors, function(ele){ %>
+				            <%= ele %>
+				        <% }); %>
+					<% } %>
+				</div>
+			</div>
+			<div class="feat-description">
+				<%= desc %>
+			</div>
 		</div>
 	</div>
 `);

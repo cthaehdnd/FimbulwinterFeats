@@ -13,7 +13,7 @@
 		"proficiency": "Sub-Machine Guns",
 		"rank": 1,
 		"precursors": [],
-		"desc": "While you are wielding a sub-machin gune you may move an additional 5ft, also if you do not use the entirety of your movement before taking the attack action, you may use the remaining movement after you finish your attack."
+		"desc": "While you are wielding a sub-machine gun you may move an additional 5ft, also if you do not use the entirety of your movement before taking the attack action, you may use the remaining movement after you finish your attack."
 	}, {
 		"name": "Killzone",
 		"attribute": "Combat",
@@ -87,7 +87,7 @@
 	}, {
 		"name": "Adrenaline Junky",
 		"attribute": "Fortitude",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "You can immediately take a turn upon entering the dead/dying state."
@@ -108,7 +108,7 @@
 	}, {
 		"name": "Lab Rat",
 		"attribute": "Artistry",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "If you are in a set up workspace (e.g.: a laboratory for Chemistry, a machine shop for Bricolage, etc), you have advantage on the pertaining Artistry checks."
@@ -122,7 +122,7 @@
 	}, {
 		"name": "Inspiring Presence",
 		"attribute": "Charisma",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "You may use a bonus action to give an ally inspiration. If a check is failed, but an addition of one point to a die would cause it to pass, the check passes and the inspiration is consumed."
@@ -136,14 +136,14 @@
 	}, {
 		"name": "Natural Regeneration",
 		"attribute": "Fortitude",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "As a bonus action, heal 1d6 health. You may use this once per short rest."
 	}, {
 		"name": "Tumble",
 		"attribute": "Agility",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "On a succesful dodge, you may move 5ft."
@@ -185,7 +185,7 @@
 	}, {
 		"name": "Action Surge",
 		"attribute": "Agility",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "Once per short rest, you may take an additional action on a turn."
@@ -262,14 +262,14 @@
 	}, {
 		"name": "Indomitable",
 		"attribute": "Fortitude",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "You may ignore the effects of one level of exhaustion."
 	}, {
 		"name": "Natural Armor",
 		"attribute": "Fortitude",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "Gain 1 AT"
@@ -332,7 +332,7 @@
 	}, {
 		"name": "Appraisal",
 		"attribute": "Cunning",
-		"proficiency": [],
+		"proficiency": null,
 		"rank": 1,
 		"precursors": [],
 		"desc": "You may make a *9-2* cunning check. If you succeed, you know a fair market price for an item."
