@@ -50,7 +50,7 @@
 		"precursors": [],
 		"desc": "When you set a trap, you can select any number of creatures who will not trigger it."
 	}, {
-		"name": "\"Locksmith\"",
+		"name": "Locksmith",
 		"attribute": "Agility",
 		"proficiency": "Lockpicking",
 		"rank": 1,
