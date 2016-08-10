@@ -90,7 +90,7 @@ var searchBarView = Backbone.View.extend({
 					width=900;
 				}
 			}
-			$(".search-bar").css("width", width);
+			$(".search-bar-input").css("width", width);
 		});
 
 		//update checks on hash
